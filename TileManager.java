@@ -7,15 +7,16 @@ import java.awt.*;
 public class TileManager {
    private ArrayList<Tile> tilesList;
    //The constructor method initializes the ArrayList
-   //of tiles
+   //of tiles.
    public TileManager() {
        tilesList = new ArrayList<Tile>();
    }   
-   //The method "addTile" adds tiles to the ArrayList of tiles
+   //The method "addTile" adds tiles to the ArrayList of tiles.
+   //This method takes in a Tile object as a parameter.
    public void addTile(Tile rect) {
       tilesList.add(rect); 
    }
-   //The method "drawAll" draws tiles onto graphical interface
+   //The method "drawAll" draws tiles onto graphical interface.
    public void drawAll(Graphics g) { 
       for (Tile select : tilesList) {
          select.draw(g);
@@ -23,7 +24,8 @@ public class TileManager {
    }
    //The "highest" helper method returns the last placed tile with 
    //the clicked x-y coordinates within its area. The method takes in the x-y
-   //coordinates of the mouse-click
+   //coordinates of the mouse-click. The method takes in the x-y coordinate pair
+   //as integer parameters.
    public Tile highest(int x, int y) {
       Tile noClick = new Tile(-1, -1, -1, -1, Color.BLACK);
       int x_interval_low;
@@ -39,13 +41,13 @@ public class TileManager {
       //top of the click. 
       for (Tile select : tilesList) {
          //These variables set the boundaries for the x-y 
-         //coordinates to fall into
+         //coordinates to fall into.
          x_interval_low = select.getX();
          x_interval_high = select.getX() + select.getWidth();
          y_interval_high = select.getY(); 
          y_interval_low = select.getY() + select.getHeight();
          //These if-statements determine whether the mouse-click
-         //x-y coordinates fall within the boundaries of the tile area
+         //x-y coordinates fall within the boundaries of the tile area.
          if ((x_interval_low < x) && (x < x_interval_high)) {
             if  ((y_interval_low > y) && (y > y_interval_high)){
                highest = select;
@@ -62,7 +64,8 @@ public class TileManager {
    }
    //The "highest" method finds the highest tile with an 
    //area including the x-y coordinates and places it above
-   //all the other tiles
+   //all the other tiles. The method takes in the x-y coordinate pair
+   //as integer parameters.
    public void raise(int x, int y) {
       Tile select = highest(x, y);
       //This if-statement ensures that the action occurs only
@@ -74,7 +77,8 @@ public class TileManager {
    }
    //The "lower" method finds the highest tile with an 
    //area including the x-y coordinates and places it below
-   //all the other tiles
+   //all the other tile. The method takes in the x-y coordinate pair
+   //as integer parameters. 
    public void lower(int x, int y) {
       Tile select = highest(x, y);
       //This if-statement ensures that the action occurs only
@@ -85,7 +89,9 @@ public class TileManager {
       }              
    }
    //The "delete" method removes the highest tile
-   //with its area encapsulating the x-y coordinates
+   //with its area encapsulating the x-y coordinates.
+   //The method takes in the x-y coordinate pair
+   //as integer parameters.
    public void delete(int x, int y) {
       Tile select = highest(x, y);
       //This if-statement ensures that the action occurs only
@@ -96,7 +102,8 @@ public class TileManager {
    }
    //The "deleteAll" method deletes all tiles under 
    //a mouse-click, regardless of whether its the highest 
-   //tile or not 
+   //tile or not. The method takes in the x-y coordinate pair
+   //as integer parameters.
    public void deleteAll(int x, int y) {
       int x_interval_low;
       int x_interval_high;
@@ -124,7 +131,8 @@ public class TileManager {
       }        
    }
    //The "shuffle" method shuffles the order of the list of tiles
-   //and location of each tile.
+   //and location of each tile. The method takes in the width and 
+   //height of the window as parameters
    public void shuffle(int width, int height) {
       //This shuffles within the list of tiles
       Collections.shuffle(tilesList);
